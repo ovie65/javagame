@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javagame</title>
+</head>
+<body>
+    <div  style="width:500px"; margin:0px auto; padding: 20px">
+        <h1> GUESS MY NUMBER GAME</h1>
+
+              <h2 class='message' style="font-size: 32px; margin-left:70px;">start guesing......</h2>
+                    <input class="mynumber" placeholder="guess a number between 1 and 20"
+              style="width:400px; padding:5px; text-align: center; font-size: 24px">
+                        <h1 class="number" style="left:70px; position: relative;">The number is ??</h1>
+             <button class="check"
+                        style="font-size:32px; text-align: center; width: 200px; left: 100px; position: relative">check</button>
+              <h1 class="highestscore" style="width: 500px; margin:0px auto; padding: 20px">Highest Score: 0</h1>
+    
+    </div>
+    <script>
+        const secretNumber = Math.trunc(Math.random()*20)+1;
+                    const btn = document.querySelector('.check');
+                    let myMessage=document.querySelector('.message');
+                        
+                        let theNumber=document.querySelector('.number');
+    
+                    let theBody= document.querySelector('body');
+    
+                        let myEngine = function(){
+                        let myGuess = Number(document.querySelector('.mynumber').value);
+    
+            if(!myGuess || myGuess<1 || myGuess>20){
+                 
+                myMessage.innerHTML = 'your guess must be btw 1 and 20 only';
+                myMessage.style.color ='gold';
+                document.querySelector('.mynumber').value ='';
+    
+            }
+    else if(myGuess>secretNumber){
+        myMessage.innerHTML ='your guess is too high';
+        myMessage.style.color ='red';
+        document.querySelector('.mynumber').value ='';
+    }
+            else if(myGuess < secretNumber) {
+                myMessage.innerHTML = 'your guess is too low';
+                myMessage.style.color ='blue';
+                document.querySelector('.mynumber').value ='';
+            }
+    else if(myGuess==secretNumber){
+        myMessage.innerHTML ='correct';
+        myMessage.style.color ='yellow';
+        theBody.style.backgroundColor = 'green';
+        theBody.style.color = 'white';
+        theNumber.innerHTML =`The number is ${secretNumber}` ;
+        theNumber.style.color ='yellow';
+        document.querySelector('.mynumber').value ='';
+    }
+                        }
+                        btn.addEventListener('click', myEngine);
+                        console.log(secretNumber);
+    </script>
+    <script>
+    let n;
+     n = prompt('enter any prime number from 1 to 70');
+    
+    if(!n || n<1|| n>70) {
+    alert('invalid number, enter only a number from 1 to 70');
+    } 
+    
+    else if(n==2){
+        alert(`correct ${n}, is a prime number`);
+    }
+    
+    else{
+        let i;
+        for(i = 2; i<n; i++){
+            if(n%i==0){
+                alert(`you are wrong, ${n} is not a prime number`);
+                break;
+            }
+        }
+            if(n==i){
+                alert(`correct ${n}, is a prime number`);
+            }
+        }
+    </script>
+    <div id="main">  
+        <h1 id="cal">Loan Calculator</h1>
+        <form>
+        Amount to borrow <br>
+        <br> $<input  type="text" id="amount" /><br />
+   <br>
+   
+        Interest rate (%) <br>
+        <br> <input type="text" id="interest-rate" /><br />
+   <br>
+        Duration (month) <br>
+        <br> <input type="text" id="duration" /><br />
+   <br>
+        <button type="button" onclick="calculateLoan()">Calculate</button>
+        </form>
+        <div id="result"></div>
+      </div>
+    <script>
+        function calculateLoan(){
+            let amount = parseFloat(document.getElementById('amount').value);
+            let interestRate=parseFloat(document.getElementById('interest-rate').value);
+            let duration = parseFloat(document.getElementById('duration').value);
+          // calculate monthly interest rate//
+            let monthlyInterestRate = interestRate / 100 / 12;
+        // Calculate number of monthly payment//
+         let numeberOfPayments = duration * 12;
+         //calculateb monthly payment//
+         let numerator = monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numeberOfPayments);
+         let denominator =  Math.pow(1 + monthlyInterestRate, numeberOfPayments) - 1;
+         monthlyPayment = amount * (numerator / denominator);
+         // Display result//
+         document.getElementById('result').innerHTML = 'Monthly Payment: $' + monthlyPayment.toFixed(2);
+        }
+        </script>
+    
+
+    <style>
+        #main{
+            text-align: center;
+        }
+        #cal{
+            color: red;
+            background: black;
+        }
+    </style>
+        
+</body>
+</html>
